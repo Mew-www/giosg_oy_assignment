@@ -5,5 +5,8 @@
 *.pyc
 *.pyo
 
+# SQLite db
+/gi_assignment/db.sqlite3
+
 # IntelliJ settings
 /.idea
