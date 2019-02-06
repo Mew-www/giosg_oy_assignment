@@ -12,7 +12,7 @@
 `source venv/bin/activate`  
 `pip install -r requirements.txt`  
 
-### Set-up environment variables and init database models
+### Set-up environment variables, init database, and generate static files
 Environment variables to declare (on the user running WSGI):  
 * GI_ASSIGNMENT_SECRET_KEY='an-instance-specific-new-secret-key'  
     Use the following snippet to generate a new key:  
@@ -27,4 +27,44 @@ Environment variables to declare (on the user running WSGI):
 
 Migrate database models:  
 `cd gi_assignment`  
-`python manage.py migrate`
+`python manage.py migrate`  
+`python manage.py collectstatic`
+
+### Configure NGINX and run the django-project through Gunicorn
+In nginx's configuration file (e.g. /etc/nginx/sites-enabled/default) set following clauses:  
+**Note the ip-address and instance-specific folder path**  
+
+    server {
+        listen 80 default_server;        
+        listen [::]:80 default_server;
+        server_name OUTFACING-IP-ADDR;  
+        
+        # SSL configuration separately
+        
+        access_log /PATH-TO-LOGFOLDER/logs/nginx-access.log;
+        error_log /PATH-TO-LOGFOLDER/logs/nginx-error.log;
+        
+        location /static/ {
+                alias /PATH-TO-REPO/tmp_gi/gi_assignment/static/;
+        }
+        
+        location / {
+                proxy_pass_header Server;
+                proxy_set_header Host $http_host;
+                proxy_redirect off;
+                
+                proxy_set_header X-Forwarded-For $remote_addr;
+                proxy_set_header X-Scheme $scheme;
+                
+                proxy_connect_timeout 10;
+                proxy_read_timeout 10;
+                
+                proxy_pass http://127.0.0.1:8000;
+        }
+        
+        error_page 500 502 503 504 /static/50x.html;
+    }
+
+Go to django project folder and run Gunicorn daemonized via:  
+`cd /PATH-TO-REPO/tmp_gi/gi_assignment`  
+`gunicorn gi_assignment.wsgi --bind 127.0.0.1:8000 --daemon`  
