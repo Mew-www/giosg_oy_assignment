@@ -5,8 +5,10 @@
 *.pyc
 *.pyo
 
-# SQLite db
+# SQLite db and collectstatic files
 /gi_assignment/db.sqlite3
+/gi_assignment/static/*
+!/gi_assignment/static/.gitkeep
 
 # IntelliJ settings
 /.idea
