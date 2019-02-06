@@ -62,7 +62,11 @@ In nginx's configuration file (e.g. /etc/nginx/sites-enabled/default) set follow
                 proxy_pass http://127.0.0.1:8000;
         }
         
-        error_page 500 502 503 504 /templates/50x.html;
+        error_page 500 502 503 504 /50x.html;
+        location = /50x.html {
+            root /PATH-TO-REPO/tmp_gi/gi_assignment/templates;
+            internal;
+        }
     }
 
 Go to django project folder and run Gunicorn daemonized via:  
