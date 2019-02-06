@@ -1,5 +1,5 @@
 ### Required background software (installed and running)  
-* **NGINX + Gunicorn** *(described further below)* 
+* **NGINX + Gunicorn** *(instructed further below)* 
     * or **Apache2 + mod_wsgi**
         * *[Linux guide](https://docs.djangoproject.com/en/2.1/howto/deployment/wsgi/modwsgi/)* 
         * *[Windows guide, except link Django's wsgi.py instead of described wsgi_app.py](https://beamtic.com/installing-mod-wsgi-apache-windows)*
