@@ -1,0 +1,9 @@
+# Presumed virtualenv path
+/venv
+
+# Pre-compiled modules
+*.pyc
+*.pyo
+
+# IntelliJ settings
+/.idea
