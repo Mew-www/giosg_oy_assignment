@@ -15,7 +15,23 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.shortcuts import render
+
 
 urlpatterns = [
     path('nondefaultadminsite/', admin.site.urls)
 ]
+
+
+def request_404(request, exception=None):
+    return render(request, '404.html', status=404)
+
+
+handler404 = request_404
+
+
+def request_500(request, exception=None):
+    return render(request, '50x.html', status=500)
+
+
+handler500 = request_500

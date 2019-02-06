@@ -25,7 +25,7 @@ Environment variables to declare (on the user running WSGI):
 * GI_ASSIGNMENT_DEBUG='0'  
     Optional, defaults to False. Only value "1" sets it on.
 
-Migrate database models:  
+Migrate database models and generate app-specific static files:  
 `cd gi_assignment`  
 `python manage.py migrate`  
 `python manage.py collectstatic`
@@ -62,7 +62,7 @@ In nginx's configuration file (e.g. /etc/nginx/sites-enabled/default) set follow
                 proxy_pass http://127.0.0.1:8000;
         }
         
-        error_page 500 502 503 504 /static/50x.html;
+        error_page 500 502 503 504 /templates/50x.html;
     }
 
 Go to django project folder and run Gunicorn daemonized via:  
