@@ -13,19 +13,19 @@
 `pip install -r requirements.txt`  
 
 ### Set-up environment variables, init database, and generate static files
-Environment variables to declare (on the user running WSGI):  
+Declare following envvars (on the user running WSGI):  
 * GI_ASSIGNMENT_SECRET_KEY='an-instance-specific-new-secret-key'  
-    Use the following snippet to generate a new key:  
+    > Use the following snippet to generate a new key:  
     `from django.core.management.utils import get_random_secret_key`  
     `get_random_secret_key()`
       
 * GI_ASSIGNMENT_ALLOWED_HOSTS='comma,separated,list,of,domains'  
-    Optional, defaults to "localhost". If you're hosting/accessing locally from "127.0.0.1" you may have to change this to that. Or any other domain(s) being used.
+    > Optional, defaults to "localhost". If you're hosting/accessing locally from "127.0.0.1" you may have to change this to that. Or any other domain(s) being used.
 
 * GI_ASSIGNMENT_DEBUG='0'  
-    Optional, defaults to False. Only value "1" sets it on.
+    > Optional, defaults to False. Only value "1" sets it on.
 
-Migrate database models and generate app-specific static files:  
+Migrate database models and gather static files:  
 `cd gi_assignment`  
 `python manage.py migrate`  
 `python manage.py collectstatic`
