@@ -19,18 +19,19 @@ from django.shortcuts import render
 
 
 urlpatterns = [
-    path('nondefaultadminsite/', admin.site.urls)
+    path('nondefaultadminsite/', admin.site.urls),
+    path('intentionallybroken/', render)
 ]
 
 
-def request_404(request, exception=None):
+def request_404(request):
     return render(request, '404.html', status=404)
 
 
 handler404 = request_404
 
 
-def request_500(request, exception=None):
+def request_500(request):
     return render(request, '50x.html', status=500)
 
 
