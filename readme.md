@@ -25,6 +25,8 @@ Declare following envvars (on the user running WSGI):
 * GI_ASSIGNMENT_DEBUG='0'  
     > Optional, defaults to False. Only value "1" sets it on.
 
+* GI_ASSIGNMENT_TEST_API_TOKEN='base64-token-to-be-used-in-integration-tests'
+
 Migrate database models and gather static files:  
 `cd gi_assignment`  
 `python manage.py migrate`  
