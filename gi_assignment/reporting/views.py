@@ -1,3 +1,11 @@
-from django.shortcuts import render
+from django.http import JsonResponse
+import requests
 
-# Create your views here.
+
+def total_numbers(request, start_date, end_date):
+    return JsonResponse({'start_date': start_date, 'end_date': end_date})
+
+
+def daily_numbers(request, start_date, end_date, page=1):
+    return JsonResponse({'start_date': start_date, 'end_date': end_date, 'page': page})
+
