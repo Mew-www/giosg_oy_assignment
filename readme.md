@@ -49,6 +49,10 @@ In nginx's configuration file (e.g. /etc/nginx/sites-enabled/default) set follow
         access_log /PATH-TO-LOGFOLDER/logs/nginx-access.log;
         error_log /PATH-TO-LOGFOLDER/logs/nginx-error.log;
         
+        location /favicon.ico {
+                alias /PATH-TO-REPO/tmp_gi/gi_assignment/static/favicon.ico;
+        }
+        
         location /static/ {
                 alias /PATH-TO-REPO/tmp_gi/gi_assignment/static/;
         }
