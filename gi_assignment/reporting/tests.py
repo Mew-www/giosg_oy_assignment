@@ -5,7 +5,11 @@ import os
 
 class InterfaceTests(SimpleTestCase):
     """
-    When using headers in interface tests, remember to pass in the already-HTTP_-prefixed (and underscored) version.
+    Interface tests to validate output formats of APIs.
+
+    REQUIRES envvar "GI_ASSIGNMENT_TEST_API_TOKEN".
+
+    REMINDER: When using headers in tests, remember to pass in the already-HTTP_-prefixed (and underscored) version.
     """
     def test_total_v1_interface(self):
         response = self.client.get(
