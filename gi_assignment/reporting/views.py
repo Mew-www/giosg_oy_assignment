@@ -8,6 +8,7 @@ def total_numbers(request, start_date, end_date):
     auth_token = request.META.get('HTTP_X_GI_TOKEN')
     if not auth_token:
         return HttpResponseBadRequest('Missing header "X-Gi-Token: b64-auth-token"')
+
     r = requests.get('https://api.giosg.com/api/reporting/v1/rooms/'
                      '84e0fefa-5675-11e7-a349-00163efdd8db/chat-stats/daily/'
                      '?start_date={}'
@@ -15,6 +16,9 @@ def total_numbers(request, start_date, end_date):
                      headers={
                          'Authorization': 'Token '+auth_token
                      })
+    if r.status_code == 401:
+        return HttpResponseBadRequest('Unauthorized')
+
     stats = r.json()
     return JsonResponse({
         'total_conversation_count': stats['total_conversation_count'],
@@ -27,6 +31,7 @@ def daily_numbers(request, start_date, end_date, page=1):
     auth_token = request.META.get('HTTP_X_GI_TOKEN')
     if not auth_token:
         return HttpResponseBadRequest('Missing header "X-Gi-Token: b64-auth-token"')
+
     r = requests.get('https://api.gi'
                      'osg.com/api/reporting/v1/rooms/'
                      '84e0fefa-5675-11e7-a349-00163efdd8db/chat-stats/daily/'
@@ -35,6 +40,9 @@ def daily_numbers(request, start_date, end_date, page=1):
                      headers={
                          'Authorization': 'Token '+auth_token
                      })
+    if r.status_code == 401:
+        return HttpResponseBadRequest('Unauthorized')
+
     stats = r.json()
     stats_by_date = sorted(stats['by_date'], key=lambda x: datetime.strptime(x['date'], "%Y-%m-%d"))
     is_paginated = len(stats_by_date) > 5
