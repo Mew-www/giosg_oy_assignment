@@ -16,13 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import render
+from django.views.generic import TemplateView
 
 
 urlpatterns = [
     path('nondefaultadminsite/', admin.site.urls),
     path('intentionallybroken/', render),
 
-    path('reporting/v1/', include('reporting.urls.v1'))
+    path('reporting/v1/', include('reporting.urls.v1')),
+    path('', TemplateView.as_view(template_name='backend_test_ui.html'))
 ]
 
 
