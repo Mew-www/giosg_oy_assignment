@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+from corsheaders.defaults import default_headers
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,6 +21,9 @@ SECRET_KEY = os.environ['GI_ASSIGNMENT_SECRET_KEY']
 ALLOWED_HOSTS = os.environ.get('GI_ASSIGNMENT_ALLOWED_HOSTS', "localhost").split(',')
 DEBUG = os.environ.get('GI_ASSIGNMENT_DEBUG') == "1"
 CORS_ORIGIN_ALLOW_ALL = True  # INSECURE but introducing more envvars to configure for prod+dev is fuss for assignment
+CORS_ALLOW_HEADERS = default_headers + (
+    'X-Gi-Token',
+)
 
 # Applications and functionality
 INSTALLED_APPS = [
