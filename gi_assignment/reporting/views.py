@@ -9,7 +9,8 @@ def total_numbers(request, start_date, end_date):
     if not auth_token:
         return HttpResponseBadRequest('Missing header "X-Gi-Token: b64-auth-token"')
 
-    r = requests.get('https://api.giosg.com/api/reporting/v1/rooms/'
+    r = requests.get('https://api.gi'
+                     'osg.com/api/reporting/v1/rooms/'
                      '84e0fefa-5675-11e7-a349-00163efdd8db/chat-stats/daily/'
                      '?start_date={}'
                      '&end_date={}'.format(start_date.strftime("%Y-%m-%d"), end_date.strftime("%Y-%m-%d")),
