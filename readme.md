@@ -32,6 +32,9 @@ Migrate database models and gather static files:
 `python manage.py migrate`  
 `python manage.py collectstatic`
 
+### You can test-run project locally via
+`python manage.py runserver`
+
 ### Configure NGINX and run the django-project through Gunicorn
 In nginx's configuration file (e.g. /etc/nginx/sites-enabled/default) set following clauses:  
 **Note the ip-address and instance-specific folder path**  
